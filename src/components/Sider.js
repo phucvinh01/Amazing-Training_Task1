@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Checkbox } from "antd";
 import { Input, Space, Button } from "antd";
 import img_1 from "../images/icon-title-course.png";
@@ -11,14 +11,34 @@ const onChange = (e) => {
 };
 
 const Sider = () => {
+  const handleChangePrice = (e) => {
+    let value = e.target.value.split(" ")[0];
+    var number = Number(value.replace(/[^0-9.-]+/g, ""));
+
+    setPrivesValues({ ...priceValues, [e.target.name]: number });
+  };
+  const [priceValues, setPrivesValues] = useState({
+    fromPrice: NaN,
+    toPrice: NaN,
+  });
   return (
     <>
       <div className="container">
         <h5>KHOẢNG GIÁ</h5>
         <p>Giá từ</p>
-        <Input className="" placeholder="0 VND"></Input>
+        <Input
+          className=""
+          placeholder="0 VND"
+          name="formPrice"
+          onChange={handleChangePrice}
+        ></Input>
         <p className="mt-3">Đến giá</p>
-        <Input className="" placeholder="10.000.000 VND"></Input>
+        <Input
+          className=""
+          placeholder="10.000.000 VND"
+          name="toPrice"
+          onChange={handleChangePrice}
+        ></Input>
         <h5 className="mt-3">HÌNH THỨC HỌC</h5>
         <Checkbox onChange={onChange}>Online</Checkbox>
         <br></br>
@@ -30,16 +50,16 @@ const Sider = () => {
             <Checkbox>Dễ</Checkbox>
             <img src={img_1} alt="img" className="w-25"></img>
           </div>
-          <div class="d-flex align-items-center justify-content-between">
+          <div className="d-flex align-items-center justify-content-between">
             <Checkbox>Trung bình</Checkbox>
             <img src={img_2} alt="img" className="w-25"></img>
           </div>
-          <div class="d-flex justify-content-between align-items-center">
+          <div className="d-flex justify-content-between align-items-center">
             <Checkbox>Khó</Checkbox>
             <img src={img_3} alt="img" className="w-25"></img>
           </div>
-          <div class="d-flex align-items-center justify-content-between">
-          <Checkbox>Cực khó</Checkbox>
+          <div className="d-flex align-items-center justify-content-between">
+            <Checkbox>Cực khó</Checkbox>
             <img src={img_4} alt="img" className="w-25"></img>
           </div>
         </div>
@@ -63,7 +83,7 @@ const Sider = () => {
         <Checkbox>STEM</Checkbox>
       </div>
 
-      <Button type="primary" danger className="w-100 mt-3">
+      <Button type="primary" danger className="w-100 mt-3 btn-main">
         Tìm kiếm
       </Button>
     </>

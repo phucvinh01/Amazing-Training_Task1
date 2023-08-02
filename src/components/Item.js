@@ -1,13 +1,32 @@
 import React from "react";
-import { Avatar, Card ,Rate, Button } from "antd";
+import { Avatar, Card, Rate, Button } from "antd";
 const { Meta } = Card;
-const config = { style: 'currency', currency: 'VND', maximumFractionDigits: 9}
+const config = { style: "currency", currency: "VND", maximumFractionDigits: 9 };
 
-const Item = ({img,name,mentorImg,mentorName,member,description,rate,price,day}) => {
+const Item = ({
+  img,
+  name,
+  mentorImg,
+  mentorName,
+  member,
+  description,
+  rate,
+  price,
+  day,
+}) => {
   return (
     <>
       <Card
-        cover={<img alt="example" src={img} sizes="300px" height={200}  className="position-relative"/>}
+        className="card"
+        cover={
+          <img
+            alt="example"
+            src={img}
+            sizes="300px"
+            height={200}
+            className="position-relative"
+          />
+        }
       >
         <Meta
           avatar={
@@ -19,22 +38,30 @@ const Item = ({img,name,mentorImg,mentorName,member,description,rate,price,day})
             />
           }
         />
-        <h5 className="">{name}</h5>
+        <h5>{name}</h5>
 
-        <small className="text-munted mt-3">Mentor: <span className="text-danger">{mentorName}</span></small>
+        <em className="text-munted mt-3">
+          Mentor: <span className="text-danger ">{mentorName}</span>
+        </em>
 
-        <p>{member} Học viên</p>
+        <p>
+          <i className="fa-solid fa-user"></i> <em>{member} Học viên</em>
+        </p>
 
-        <p>{description}</p>
+        <p className="overflow-text">{description}</p>
 
         <Rate disabled defaultValue={rate}></Rate>
 
         <p className="d-flex align-items-center justify-content-between">
-          <strong className="text-danger">{new Intl.NumberFormat('vi-VN', config).format(price)}</strong>{" "}
-          <span>{day} buổi học</span>{" "}
+          <strong className="text-danger fw-bolder">
+            {new Intl.NumberFormat("vi-VN", config).format(price)}
+          </strong>{" "}
+          <span>
+            <i className="fa-solid fa-calendar-days"></i> {day} buổi học
+          </span>{" "}
         </p>
 
-        <Button className="mt-3 w-100" type="primary" danger>
+        <Button className="btn-main" type="ghost" block>
           Xem chi tiết
         </Button>
       </Card>
